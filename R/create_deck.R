@@ -27,13 +27,17 @@ create_deck <- function(let_1, let_2, let_3, title, image_dir, output_dir) {
     first <- let_1[!(let_1 %in% c("x"))] |>
         sample()
     second <- let_2
-    third <- sample(let_3)
+    third <- let_3[!(let_3 %in% c("y", "w"))] |>
+        sample()
 
     words <- apply(expand.grid(first, second, third), 1, paste, collapse = "")
 
     words <- sample(words)
 
-    bad_words <- c("cum", "dic", "cig", "vaj")
+    bad_words <- c(
+        "cum", "dic", "cig", "vaj", "fag", "vuk", "fuk", "fux",
+        "coc", "cok", "koc", "kok"
+    )
 
     clean_words <- words[!(words %in% bad_words)]
 
